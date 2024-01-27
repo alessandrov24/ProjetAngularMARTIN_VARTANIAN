@@ -13,6 +13,14 @@ export class AddAssignmentComponent {
   dateRendu:Date = new Date();
   nouvelAssignment:Assignment;
   //@Output() nouvelAssignment = new EventEmitter<Assignment>();
+  
+  // Nouvelles propriétés
+  auteur: string = "";
+  matiere: string = "";
+  imageMatiere: string = "";
+  photoProf: string = "";
+  note?: number; // Optionnel car l'assignment n'est pas encore noté
+  remarques: string = "";
 
   constructor(private assignmenntService:AssignmentsService, private router:Router) { }
 
@@ -22,6 +30,14 @@ export class AddAssignmentComponent {
     newAssignment.nom = this.nomDevoir;
     newAssignment.dateDeRendu = this.dateRendu;
     newAssignment.rendu = false;
+
+    // Nouvelles propriétés
+    newAssignment.auteur = this.auteur;
+    newAssignment.matiere = this.matiere;
+    newAssignment.imageMatiere = this.imageMatiere;
+    newAssignment.photoProf = this.photoProf;
+    newAssignment.note = this.note; // Peut rester non défini
+    newAssignment.remarques = this.remarques;
 
     //this.assignments.push(newAssignment);
     //this.nouvelAssignment.emit(newAssignment);
