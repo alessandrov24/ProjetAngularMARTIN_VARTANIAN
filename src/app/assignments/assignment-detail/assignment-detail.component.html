@@ -2,6 +2,16 @@
     <mat-card-content>
     <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
     <mat-card-subtitle>{{assignmentTransmis.dateDeRendu |date}}</mat-card-subtitle>
+
+    <!-- Nouvelles propriétés - Juste à voir pour l'aspect visuel avec les trucs <mat-card> -->
+    <p>Auteur : {{ assignmentTransmis.auteur }}</p>
+    <p>Matière : {{ assignmentTransmis.matiere }}</p>
+    <p>Note : {{ assignmentTransmis.note ? assignmentTransmis.note : 'Non noté' }}</p>
+    <p>Remarques : {{ assignmentTransmis.remarques ? assignmentTransmis.remarques : 'Aucune' }}</p>
+        
+    <img *ngIf="assignmentTransmis.imageMatiere" [src]="assignmentTransmis.imageMatiere" alt="Image de la matière" class="image-matiere"/>
+    <img *ngIf="assignmentTransmis.photoProf" [src]="assignmentTransmis.photoProf" alt="Photo du professeur" class="photo-prof"/>
+    
     <mat-card-actions id="bottom">
         <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">Devoir rendu</mat-checkbox>
         <button mat-stroked-button color="primary" (click)="onClickEdit()" [disabled]="!isAdmin()">Edit </button>
