@@ -10,22 +10,18 @@ import { AssignmentsService } from '../shared/assignments.service';
 export class AssignmentsComponent implements OnInit {
   titre = "Formulaire d'ajout de devoir";
   color = 'green';
-  formVisible = false;
+  id="monParagraphe";
   boutonDesactive = true;
-  assignment!:Assignment[];
+  // pour le formulaire
+  nomDevoir=""
+  dateDeRendu?:Date=undefined;
+  assignments:Assignment[];
 
-  constructor (private assignmentService:AssignmentsService) {}
-  
+  constructor(private assignmenntService:AssignmentsService) {}
 
   ngOnInit() {
-    //this.assignment = this.assignmentService.getAssignments();
     this.getAssignments();
   }
-
-  getAssignments() {
-    this.assignmentService.getAssignments().subscribe(assignment => this.assignment = assignment);
-  }
-
   getDescription() {
     return 'Je suis un sous composant';
   }
@@ -35,33 +31,23 @@ export class AssignmentsComponent implements OnInit {
     else return 'red';
   }
 
-  //nouvelle méthode pour BtnCLick
-  onAddAssignmentBtnClick() {
-    //this.formVisible = true;
+  onSubmit(event:any) {
+    this.titre = "Vous avez tapé : " + this.dateDeRendu;
+    console.log(event)
+
+    let a = new Assignment();
+    a.nom = this.nomDevoir;
+    if(this.dateDeRendu)
+      a.dateDeRendu = this.dateDeRendu;
+
+    a.rendu = false;
+
+    this.assignments.push(a);
   }
 
-  //Nouvelle propriété
-  assignmentSelectionne!:Assignment;
-
-  //Méthode appelée quand on clique
-  assignmentClique(assignment:Assignment) {
-    this.assignmentSelectionne = assignment;
+  getAssignments() {
+    this.assignmenntService.getAssignments()
+    .subscribe(assignments => this.assignments = assignments);
   }
 
-  /*//Méthode pour add assignment (push l'event)
-  onNouvelAssignment(event:Assignment){
-    //this.assignment.push(event);
-    this.formVisible = false;
-    this.assignmentService.addAssignment;
-  }
-*/
-
-/*
-  //Fonction pour supprimer l'assignment choisis
-  onDeleteAssignment(a:Assignment) {
-    // position de l'assignment à supprimer, dans le tableau
-    const pos = this.assignment.indexOf(a);
-    this.assignment.splice(pos, 1);
-  }
-*/
 }

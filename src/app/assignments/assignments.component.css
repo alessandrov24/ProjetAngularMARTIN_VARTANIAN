@@ -13,16 +13,15 @@ table tr td {
   background-color:yellow;
 }
 
-
 #monParagraphe {
   color:pink
 }
 
-.container {
-  display:flex;
+.container{
+  display: flex;
   flex-direction: column;
 }
 
-.btnAjout {
+.ajouterBtn{
   align-self: flex-end;
 }

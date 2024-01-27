@@ -1,7 +1,9 @@
 export class Assignment {
-  _id?: string;
-  id!: number;
-  nom!: string;
-  dateDeRendu!: Date;
-  rendu!: boolean;
+  // ? indique que l'attribut est optionnel
+  // lors de la création d'un nouvel assignment, MongoDB va créer un id
+  _id?:number;
+  id!:number;
+  nom!:string;
+  dateDeRendu!:Date;
+  rendu!:boolean;
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../shared/auth.service';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,17 +8,16 @@ import { AuthService } from 'src/app/shared/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  username: string = '';
-  password: string = '';
+  username: string;
+  password: string;
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  onSubmit() {
-    const isLoggedIn = this.authService.logIn(this.username, this.password);
-    if (isLoggedIn) {
+  onLogin() {
+    if (this.authService.logIn(this.username, this.password)) {
       this.router.navigate(['/']);
     } else {
-      // Show error message
+      console.log('Erreur de login !');
     }
   }
 }

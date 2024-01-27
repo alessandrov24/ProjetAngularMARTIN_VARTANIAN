@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class LoggingService {
 
-  log(assignmentName: string, action: string){
-    console.log('Assignment' + assignmentName + ' ' + action);
-  }
-
   constructor() { }
+
+  log(assignmentName, action){
+    console.log("Log : l'assignment " + assignmentName + " a été " + action);
+  }
 }

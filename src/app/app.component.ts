@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthService } from './shared/auth.service';
 import { Router } from '@angular/router';
-import{ AuthService } from './shared/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,18 +8,11 @@ import{ AuthService } from './shared/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  titre = 'Application de gestion de devoirs (Assignement)';
+  constructor(private authservice:AuthService, private router:Router){}
+
+  titre = 'Application de gestion de devoirs';
   nomProf = 'Michel Buffa';
   x = 3;
-  opened=false;
 
-  constructor (private authService: AuthService, private router: Router){}
-  login() {
-    this.router.navigate(['/login']);
-  }
-
+  opened= false;
 }
-
-
-
-

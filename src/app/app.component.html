@@ -1,37 +1,24 @@
-<div>
-    <div>
-        <mat-toolbar color="primary">
-            <mat-toolbar-row>
-                <a id="nav" [routerLink]="['/home']"><button mat-button ><mat-icon>home</mat-icon></button></a>
-                <button mat-button (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
-                <button mat-button ><mat-icon>person</mat-icon></button>
-            </mat-toolbar-row>
-        </mat-toolbar>
-        <mat-sidenav-container>
-            <mat-sidenav [(opened)]="opened" mode="side">
-                <mat-nav-list>
-                    <a mat-list-item>Liste de devoirs</a>
-                    <a mat-list-item>Ajout de devoir</a>
-                    <a mat-list-item>Modification de devoir</a>
-                    <a mat-list-item>Supression de devoirs</a>
-                    <a mat-list-item>Génération de données test</a>
-                </mat-nav-list>
-            </mat-sidenav>
-            <mat-sidenav-content>
+<mat-toolbar color="primary">
+    <button mat-button routerLink="/home"><mat-icon>home</mat-icon> Accueil</button>
+    <button mat-button (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/login"><mat-icon>login</mat-icon> Connexion</button>
+</mat-toolbar>
 
-<div class="container">
-<h1>
-    <nav><a routerLink="/home">{{titre}}</a></nav>
-</h1>
-<button mat-flat-button color="accent" (click)="login()">Connecter</button>
-</div>
-                <router-outlet></router-outlet>
-            </mat-sidenav-content>
-        </mat-sidenav-container>
-    
-    </div>
-</div>
-
-
-
-
+<mat-sidenav-container>
+    <mat-sidenav mode="side" [(opened)]="opened">
+      <mat-nav-list>
+        <a mat-list-item href="#">Liste des devoirs</a>
+        <a mat-list-item href="#">Ajout d'un devoir</a>
+        <a mat-list-item href="#">Modification d'un devoir</a>
+        <a mat-list-item href="#">Suppression d'un devoir</a>
+        <a mat-list-item href="#">Génération de données de test</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <h1>
+          <nav><a routerLink="/home">{{titre}}</a></nav>
+        </h1>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

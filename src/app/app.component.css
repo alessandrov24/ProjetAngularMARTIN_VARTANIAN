@@ -30,8 +30,6 @@ section {
   width: 120px;
 }
 
-#nav{
-  text-decoration: none;
-  color: white;
+.spacer {
+  flex: 1 1 auto;
 }
-
