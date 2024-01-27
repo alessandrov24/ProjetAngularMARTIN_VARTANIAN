@@ -19,6 +19,15 @@
           <ng-template #nonsoumis>
             Le {{assignment.nom}}, n'a pas été rendu.
           </ng-template>
+
+          <!-- Affichage des nouvelles propriétés -->
+          <p>Auteur: {{ assignment.auteur }}</p>
+          <p>Matière: {{ assignment.matiere }}</p>
+          <p>Note: {{ assignment.note ? assignment.note : 'Non noté' }}</p>
+          <p>Remarques: {{ assignment.remarques ? assignment.remarques : 'Aucune' }}</p>
+          <img *ngIf="assignment.imageMatiere" [src]="assignment.imageMatiere" alt="Image de la matière" style="width: 50px; height: auto;"/>
+          <img *ngIf="assignment.photoProf" [src]="assignment.photoProf" alt="Photo du professeur" style="width: 50px; height: auto;"/>
+          
           <mat-divider></mat-divider>
         </mat-list-item>
       </a>
