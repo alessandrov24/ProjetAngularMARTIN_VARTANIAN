@@ -87,6 +87,14 @@ export class AssignmentsComponent implements OnInit {
 
     a.rendu = false;
 
+    // Initialisation des nouvelles propriétés
+    a.auteur = ""; // Ici, vous devriez assigner la valeur de l'auteur
+    a.matiere = ""; // Ici, vous devriez assigner la valeur de la matière
+    a.imageMatiere = ""; // Ici, vous devriez assigner l'URL ou le chemin de l'image de la matière
+    a.photoProf = ""; // Ici, vous devriez assigner l'URL ou le chemin de la photo du professeur
+    a.note = undefined; // La note est initialisée à undefined car elle n'est pas encore attribuée
+    a.remarques = ""; // Ici, vous devriez assigner les éventuelles remarques sur l'assignment
+    
     this.assignments.push(a);
   }
 
