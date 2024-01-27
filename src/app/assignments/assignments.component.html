@@ -24,4 +24,15 @@
       </a>
     </nav>
   </mat-list>
+
+  <!-- Pagination Controls -->
+<div>
+  <mat-paginator [length]="totalDocs"
+               [pageSize]="limit"
+               [pageSizeOptions]="[5, 10, 20]"
+               (page)="handlePageEvent($event)">
+</mat-paginator>
+</div>
+
+<p>Total Assignments: {{ totalDocs }}, Total Pages: {{ totalPages }}</p>
 </main>

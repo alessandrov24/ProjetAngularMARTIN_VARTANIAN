@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Assignment } from '../assignments/assignment.model';
-import { Observable, map, of } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { LoggingService } from './logging.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -57,7 +57,17 @@ export class AssignmentsService {
     .pipe(map(a=> {
       a.nom += " transformé avec un pipe";
       return a;
-    }));
+    }),
+    catchError(this.handleError<Assignment>(`getAssignment id=${id}`))
+    );
+  }
+
+  private handleError<T>(operation, result?: T) { 
+    return (error: any): Observable<T> => { 
+      console.error(error); // log to console instead 
+      console.log(operation + 'a échoué' + error.message);
+      return of(result as T); 
+    }; 
   }
 
   updateAssignment(assignment:Assignment):Observable<any> {
@@ -81,6 +91,10 @@ export class AssignmentsService {
     return of("Assignment supprimé");*/
     let deleteURI = this.url+"/"+assignment._id;
     return this.http.delete(deleteURI);
+  }
+
+  getAssignmentsPagine(page:number, limit:number):Observable<any> {
+    return this.http.get(this.url+"?page="+page+"&limit="+limit);
   }
 
 }

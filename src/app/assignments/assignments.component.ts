@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Assignment } from './assignment.model';
 import { AssignmentsService } from '../shared/assignments.service';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-assignments',
@@ -15,13 +16,56 @@ export class AssignmentsComponent implements OnInit {
   // pour le formulaire
   nomDevoir=""
   dateDeRendu?:Date=undefined;
-  assignments:Assignment[];
+  assignments: Assignment[] = [];
+
+  //pour gérer la pagination
+  page:number=1;
+  limit:number=10;
+  totalDocs!:number;
+  totalPages!:number;
+  nextPage!:number;
+  prevPage!:number;
+  hasPrevPage!:boolean;
+  hasNextPage!:boolean;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private assignmenntService:AssignmentsService) {}
 
   ngOnInit() {
-    this.getAssignments();
+    //this.getAssignments();
+    /*this.assignmenntService.getAssignmentsPagine(this.page, this.limit).
+    subscribe(data => {
+      this.assignments = data.docs;
+      this.totalDocs = data.totalDocs;
+      this.totalPages = data.totalPages;
+      this.nextPage = data.nextPage;
+      this.prevPage = data.prevPage;
+      this.hasPrevPage = data.hasPrevPage;
+      this.hasNextPage = data.hasNextPage;
+    });*/
+    this.loadAssignments();
   }
+
+  loadAssignments() {
+    this.assignmenntService.getAssignmentsPagine(this.page, this.limit).subscribe(data => {
+      // Assuming the response has a structure with 'docs', 'totalDocs', and 'totalPages'
+      this.assignments = data.docs;
+      this.totalDocs = data.totalDocs;
+      this.totalPages = data.totalPages;
+      this.nextPage = data.nextPage;
+      this.prevPage = data.prevPage;
+      this.hasPrevPage = data.hasPrevPage;
+      this.hasNextPage = data.hasNextPage;
+    });
+  }
+
+  handlePageEvent(event: PageEvent) {
+    this.limit = event.pageSize;
+    this.page = event.pageIndex + 1; // MatPaginator pageIndex is 0-based
+    this.loadAssignments();
+  }
+
   getDescription() {
     return 'Je suis un sous composant';
   }

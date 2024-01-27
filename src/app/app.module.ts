@@ -28,6 +28,7 @@ import { AuthGuard } from './shared/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { AdminAuthGuard } from './shared/admin-auth.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const routes : Routes = [
   {path: 'home', component: AssignmentsComponent},
@@ -69,7 +70,8 @@ const routes : Routes = [
     MatCheckboxModule,
     RouterModule.forRoot(routes),
     MatSlideToggleModule,
-    HttpClientModule
+    HttpClientModule,
+    MatPaginatorModule
   ],
   providers: [AuthGuard, AdminAuthGuard],
   bootstrap: [AppComponent]
