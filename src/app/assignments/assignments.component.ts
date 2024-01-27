@@ -60,6 +60,7 @@ export class AssignmentsComponent implements OnInit {
     });
   }
 
+  // Method for pagination controls
   handlePageEvent(event: PageEvent) {
     this.limit = event.pageSize;
     this.page = event.pageIndex + 1; // MatPaginator pageIndex is 0-based
