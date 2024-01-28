@@ -13,7 +13,7 @@ export class AssignmentsService {
 
   assignments:Assignment[] = [];
 
-  url = "http://localhost:8010/api/assignments";
+  url = "https://apiprojetangular.onrender.com/api/assignments";
 
   getAssignments():Observable<Assignment[]> {
     //return of(this.assignments);
