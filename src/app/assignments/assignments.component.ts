@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Assignment } from './assignment.model';
 import { AssignmentsService } from '../shared/assignments.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-assignments',
@@ -28,28 +31,23 @@ export class AssignmentsComponent implements OnInit {
   hasPrevPage!:boolean;
   hasNextPage!:boolean;
 
+  displayedColumns: string[] = ['nom', 'dateDeRendu', 'rendu', 'actions'];
+  dataSource: MatTableDataSource<Assignment>;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private assignmenntService:AssignmentsService) {}
 
   ngOnInit() {
-    //this.getAssignments();
-    /*this.assignmenntService.getAssignmentsPagine(this.page, this.limit).
-    subscribe(data => {
-      this.assignments = data.docs;
-      this.totalDocs = data.totalDocs;
-      this.totalPages = data.totalPages;
-      this.nextPage = data.nextPage;
-      this.prevPage = data.prevPage;
-      this.hasPrevPage = data.hasPrevPage;
-      this.hasNextPage = data.hasNextPage;
-    });*/
     this.loadAssignments();
   }
 
   loadAssignments() {
     this.assignmenntService.getAssignmentsPagine(this.page, this.limit).subscribe(data => {
       // Assuming the response has a structure with 'docs', 'totalDocs', and 'totalPages'
+      this.dataSource = new MatTableDataSource(data.docs);
+      this.dataSource.sort = this.sort;
       this.assignments = data.docs;
       this.totalDocs = data.totalDocs;
       this.totalPages = data.totalPages;
@@ -57,6 +55,7 @@ export class AssignmentsComponent implements OnInit {
       this.prevPage = data.prevPage;
       this.hasPrevPage = data.hasPrevPage;
       this.hasNextPage = data.hasNextPage;
+      this.dataSource.filter = '';
     });
   }
 
@@ -87,20 +86,22 @@ export class AssignmentsComponent implements OnInit {
 
     a.rendu = false;
 
-    // Initialisation des nouvelles propriétés
-    a.auteur = ""; // Ici, vous devriez assigner la valeur de l'auteur
-    a.matiere = ""; // Ici, vous devriez assigner la valeur de la matière
-    a.imageMatiere = ""; // Ici, vous devriez assigner l'URL ou le chemin de l'image de la matière
-    a.photoProf = ""; // Ici, vous devriez assigner l'URL ou le chemin de la photo du professeur
-    a.note = undefined; // La note est initialisée à undefined car elle n'est pas encore attribuée
-    a.remarques = ""; // Ici, vous devriez assigner les éventuelles remarques sur l'assignment
-    
     this.assignments.push(a);
   }
 
   getAssignments() {
     this.assignmenntService.getAssignments()
     .subscribe(assignments => this.assignments = assignments);
+  }
+
+  applyFilterRendu(event: MatCheckboxChange) {
+    const renduFilterValue = event.checked ? 'true' : '';
+    this.dataSource.filter = renduFilterValue;
+  }
+
+  applySearch(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    this.dataSource.filter = inputElement.value.trim().toLowerCase();
   }
 
 }

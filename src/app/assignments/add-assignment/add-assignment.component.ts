@@ -13,14 +13,14 @@ export class AddAssignmentComponent {
   dateRendu:Date = new Date();
   nouvelAssignment:Assignment;
   //@Output() nouvelAssignment = new EventEmitter<Assignment>();
-  
-  // Nouvelles propriétés
   auteur: string = "";
   matiere: string = "";
-  imageMatiere: string = "";
-  photoProf: string = "";
-  note?: number; // Optionnel car l'assignment n'est pas encore noté
+  imageUrlMatiere: string = "";
+  prof: string = "";
+  note: number;
   remarques: string = "";
+  matiereImageUrl: string;
+  profImageUrl: string;
 
   constructor(private assignmenntService:AssignmentsService, private router:Router) { }
 
@@ -30,22 +30,27 @@ export class AddAssignmentComponent {
     newAssignment.nom = this.nomDevoir;
     newAssignment.dateDeRendu = this.dateRendu;
     newAssignment.rendu = false;
-
-    // Nouvelles propriétés
     newAssignment.auteur = this.auteur;
     newAssignment.matiere = this.matiere;
-    newAssignment.imageMatiere = this.imageMatiere;
-    newAssignment.photoProf = this.photoProf;
-    newAssignment.note = this.note; // Peut rester non défini
+    newAssignment.imageUrlMatiere = this.imageUrlMatiere;
+    newAssignment.prof = this.prof;
+    newAssignment.note = this.note;
     newAssignment.remarques = this.remarques;
-
-    //this.assignments.push(newAssignment);
-    //this.nouvelAssignment.emit(newAssignment);
 
     this.assignmenntService.addAssignment(newAssignment)
       .subscribe(message => console.log(message));
 
     this.router.navigate(['/home']);
+  }
+
+  onMatiereImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    // Traiter le fichier pour l'image de la matière
+  }
+
+  onProfImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    // Traiter le fichier pour la photo du professeur
   }
 
 }

@@ -8,31 +8,40 @@
 
   <h3>Liste des devoirs :</h3>
 
-  <mat-list *ngFor="let assignment of assignments">
-    <nav>
-      <a routerLink="/assignment/{{assignment.id}}">
-        <h3 mat-subheader>{{assignment.dateDeRendu|date}}</h3>
-        <mat-list-item>
-          <p *ngIf="assignment.rendu; else nonsoumis">
-            {{assignment.nom}} a été rendu.
-          </p>
-          <ng-template #nonsoumis>
-            Le {{assignment.nom}}, n'a pas été rendu.
-          </ng-template>
-
-          <!-- Affichage des nouvelles propriétés -->
-          <p>Auteur: {{ assignment.auteur }}</p>
-          <p>Matière: {{ assignment.matiere }}</p>
-          <p>Note: {{ assignment.note ? assignment.note : 'Non noté' }}</p>
-          <p>Remarques: {{ assignment.remarques ? assignment.remarques : 'Aucune' }}</p>
-          <img *ngIf="assignment.imageMatiere" [src]="assignment.imageMatiere" alt="Image de la matière" style="width: 50px; height: auto;"/>
-          <img *ngIf="assignment.photoProf" [src]="assignment.photoProf" alt="Photo du professeur" style="width: 50px; height: auto;"/>
-          
-          <mat-divider></mat-divider>
-        </mat-list-item>
-      </a>
-    </nav>
-  </mat-list>
+  <div class="mat-table-container">
+    <mat-checkbox (change)="applyFilterRendu($event)">Afficher seulement les assignments rendus</mat-checkbox>
+    <mat-form-field>
+      <mat-label>Rechercher par nom</mat-label>
+      <input matInput (keyup)="applySearch($event)">
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" matSort>
+  
+      <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+        <td mat-cell *matCellDef="let assignment"> {{assignment.nom}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="dateDeRendu">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de Rendu </th>
+        <td mat-cell *matCellDef="let assignment"> {{assignment.dateDeRendu | date}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="rendu">
+        <th mat-header-cell *matHeaderCellDef> Rendu </th>
+        <td mat-cell *matCellDef="let assignment"> {{assignment.rendu ? 'Oui' : 'Non'}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let assignment">
+          <a routerLink="/assignment/{{assignment.id}}">Détails</a>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
 
   <!-- Pagination Controls -->
 <div>

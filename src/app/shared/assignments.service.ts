@@ -11,44 +11,7 @@ export class AssignmentsService {
 
   constructor(private loggingService:LoggingService, private http:HttpClient) { }
 
-  assignments:Assignment[] = [
-    {
-      id: 1,
-      nom: 'TP1 sur Webcomponents',
-      dateDeRendu: new Date('2023-01-17'),
-      rendu: true,
-      auteur: 'Étudiant 1',
-    matiere: 'Webcomponents',
-    imageMatiere: 'url_image_matiere_1',
-    photoProf: 'url_photo_prof_1',
-    note: 15,
-    remarques: 'Bien travaillé'
-    },
-    {
-      id: 2,
-      nom: 'TP2 Angular',
-      dateDeRendu: new Date('2023-12-15'),
-      rendu: false,
-      auteur: 'Étudiant 2',
-    matiere: 'Angular',
-    imageMatiere: 'url_image_matiere_2',
-    photoProf: 'url_photo_prof_2',
-    note: undefined, // Pas encore noté
-    remarques: ''
-    },
-    {
-      id: 3,
-      nom: 'TP3 Angular',
-      dateDeRendu: new Date('2023-01-04'),
-      rendu: true,
-      auteur: 'Étudiant 3',
-    matiere: 'Angular',
-    imageMatiere: 'url_image_matiere_3',
-    photoProf: 'url_photo_prof_3',
-    note: undefined, // Pas encore noté
-    remarques: ''
-    },
-  ];
+  assignments:Assignment[] = [];
 
   url = "http://localhost:8010/api/assignments";
 
@@ -73,7 +36,7 @@ export class AssignmentsService {
     //return of(this.assignments.find(a => a.id === id));
     return this.http.get<Assignment>(this.url+"/"+id)
     .pipe(map(a=> {
-      a.nom += " transformé avec un pipe";
+      a.nom;
       return a;
     }),
     catchError(this.handleError<Assignment>(`getAssignment id=${id}`))

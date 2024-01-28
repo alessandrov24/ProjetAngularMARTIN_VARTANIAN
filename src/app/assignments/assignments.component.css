@@ -1,8 +1,4 @@
 
-table tr td {
-  border: 1px solid black;
-}
-
 .rendu {
   color:green;
 }
@@ -24,4 +20,10 @@ table tr td {
 
 .ajouterBtn{
   align-self: flex-end;
+}
+
+.mat-table-container {
+  display: block;
+  max-height: 400px;
+  overflow: auto;
 }

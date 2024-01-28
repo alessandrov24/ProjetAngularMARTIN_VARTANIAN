@@ -29,6 +29,8 @@ import { LoginComponent } from './login/login.component';
 import { AdminAuthGuard } from './shared/admin-auth.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 const routes : Routes = [
   {path: 'home', component: AssignmentsComponent},
@@ -71,7 +73,9 @@ const routes : Routes = [
     RouterModule.forRoot(routes),
     MatSlideToggleModule,
     HttpClientModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule
   ],
   providers: [AuthGuard, AdminAuthGuard],
   bootstrap: [AppComponent]

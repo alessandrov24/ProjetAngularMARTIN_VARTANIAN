@@ -7,7 +7,6 @@
              name="nom"
       />
     </mat-form-field>
-    
   
     <mat-form-field>
       <mat-label>Choose a date</mat-label>
@@ -19,37 +18,36 @@
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-
-     <!-- Nouveaux champs pour les propriétés ajoutées -->
+    
     <mat-form-field>
-      <mat-label>Auteur :</mat-label>
-      <input matInput placeholder="Nom de l'auteur" [(ngModel)]="auteur" name="auteur"/>
+      <mat-label>Auteur</mat-label>
+      <input matInput [(ngModel)]="auteur" name="auteur" />
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Matière</mat-label>
+      <input matInput [(ngModel)]="matiere" name="matiere" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Matière :</mat-label>
-      <input matInput placeholder="Matière de l'assignment" [(ngModel)]="matiere" name="matiere"/>
+      <mat-label>URL de l'Image de la Matière</mat-label>
+      <input matInput [(ngModel)]="imageUrlMatiere" name="imageUrlMatiere" />
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>URL de l'Image du Professeur</mat-label>
+      <input matInput [(ngModel)]="prof" name="imageUrlProf" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Image de la Matière :</mat-label>
-      <input matInput placeholder="URL de l'image de la matière" [(ngModel)]="imageMatiere" name="imageMatiere"/>
+      <mat-label>Note</mat-label>
+      <input matInput type="number" [(ngModel)]="note" name="note" />
     </mat-form-field>
-
+    
     <mat-form-field>
-      <mat-label>Photo du Prof :</mat-label>
-      <input matInput placeholder="URL de la photo du prof" [(ngModel)]="photoProf" name="photoProf"/>
+      <mat-label>Remarques</mat-label>
+      <textarea matInput [(ngModel)]="remarques" name="remarques"></textarea>
     </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Note (sur 20) :</mat-label>
-      <input matInput placeholder="Note de l'assignment" [(ngModel)]="note" name="note" type="number"/>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Remarques :</mat-label>
-      <textarea matInput placeholder="Remarques sur l'assignment" [(ngModel)]="remarques" name="remarques"></textarea>
-    </mat-form-field>
-   
+    
     <button mat-stroked-button color="primary">Ajouter devoir</button>
   </form>

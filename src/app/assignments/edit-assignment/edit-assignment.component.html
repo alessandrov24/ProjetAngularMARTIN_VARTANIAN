@@ -11,28 +11,30 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
-         <!-- Ajout des champs pour les nouvelles propriétés -->
-    <mat-form-field>
-      <input matInput placeholder="Auteur" [(ngModel)]="auteur" name="auteur">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Matière" [(ngModel)]="matiere" name="matiere">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Image de la matière" [(ngModel)]="imageMatiere" name="imageMatiere">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Photo du professeur" [(ngModel)]="photoProf" name="photoProf">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput type="number" placeholder="Note sur 20" [(ngModel)]="note" name="note">
-    </mat-form-field>
-    <mat-form-field>
-      <textarea matInput placeholder="Remarques" [(ngModel)]="remarques" name="remarques"></textarea>
-    </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Auteur" [(ngModel)]="assignment.auteur" name="auteur">
+      </mat-form-field>
+      
+      <mat-form-field>
+        <input matInput placeholder="Matière" [(ngModel)]="assignment.matiere" name="matiere">
+      </mat-form-field>
 
+      <mat-form-field>
+        <input matInput placeholder="URL de l'Image de la Matière" [(ngModel)]="assignment.imageUrlMatiere" name="imageUrlMatiere">
+      </mat-form-field>
 
-        
+      <mat-form-field>
+        <input matInput placeholder="URL de l'Image du Professeur" [(ngModel)]="assignment.prof" name="imageUrlProf">
+      </mat-form-field>
+      
+      <mat-form-field>
+        <input matInput placeholder="Note" type="number" [(ngModel)]="assignment.note" name="note">
+      </mat-form-field>
+      
+      <mat-form-field>
+        <textarea matInput placeholder="Remarques" [(ngModel)]="assignment.remarques" name="remarques"></textarea>
+      </mat-form-field>
+
       <button mat-raised-button color="primary" [disabled]="!canEdit">
         Sauver
       </button>
