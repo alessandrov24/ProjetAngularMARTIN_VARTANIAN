@@ -17,6 +17,8 @@ export class AssignmentDetailComponent implements OnInit{
   ngOnInit(): void {
     this.getAssignment();
   }
+
+  // Récupère l'ID de l'assignment à partir de la route et demande les détails de cet assignment au service AssignmentsService. Les données récupérées sont stockées dans assignmentTransmis.
   getAssignment() {
     const id = +this.route.snapshot.paramMap.get('id');
     this.assignmentService.getAssignment(id)
