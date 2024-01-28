@@ -15,4 +15,12 @@ export class AppComponent {
   x = 3;
 
   opened= false;
+
+  isLogged() {
+    return this.authservice.isLogged();
+  }
+
+  logOut() {
+    this.authservice.logOut();
+  }
 }

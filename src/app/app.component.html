@@ -1,8 +1,9 @@
 <mat-toolbar color="primary">
-    <button mat-button routerLink="/home"><mat-icon>home</mat-icon> Accueil</button>
-    <button mat-button (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
-    <span class="spacer"></span>
-    <button mat-button routerLink="/login"><mat-icon>login</mat-icon> Connexion</button>
+  <button mat-button routerLink="/home"><mat-icon>home</mat-icon> Accueil</button>
+  <button mat-button (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+  <span class="spacer"></span>
+  <button *ngIf="!isLogged()" mat-button routerLink="/login"><mat-icon>account_circle</mat-icon> Connexion</button>
+  <button *ngIf="isLogged()" mat-button (click)="logOut()"><mat-icon>logout</mat-icon>Déconnexion</button>
 </mat-toolbar>
 
 <mat-sidenav-container>
