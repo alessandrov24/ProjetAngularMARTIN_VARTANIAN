@@ -1,26 +1,69 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/6epMQcoo)
-# Angular : rendu n°2
-Repository où déposer le projet n°2 Angular
+# Angular Project: Assignment
 
-### Nom[^1] : MARTIN
+## Repository for Angular Project
 
-### Prénom[^2] : Gautier
+### Alessandro VARTANIAN and Gautier MARTIN
 
-## A faire[^3]
-- [x] Suivre le cours jusqu'à la page 180
-- [x] Intégrer toolbar et navbar du rendu n°1
-- [x] Identification par **login/password**
-  - ajouter un tableau de login/password/role (avec rôle qui est soit **user** soit **admin**) dans le service d'authentification
-  - modifier le code pour avoir `isLogged()` **ET** `isAdmin()` au lieu de juste `isAdmin()`
-- [x] Au lieu du slider `LogIn`, ajouter un bouton connecter (avec une *mat-icon* adaptée) qui amène à un composant avec un formulaire de connexion
-- [x] Gestion des droits :
-  - L'admin peut éditer et effacer les assignment
-  - Le user peut voir le détail des assignment
-  - Si on n'est pas logué on ne peut ni voir le détail, ni éditer
-  - Admin : username: 'admin', password: 'adminpass'
-  - User : username: 'user1', password: 'pass1'
+## Project Overview
 
+This Angular project is an advanced application for managing assignments. It incorporates an authentication system, a user interface with a toolbar and navbar, and role-based access control. The application allows users to log in as either an administrator or a regular user, with distinct permissions and functionalities.
 
-[^1]: à remplir
-[^2]: à remplir
-[^3]: vous pouvez cocher les tâches qui ont été faites en utilisant la syntaxe `[x]` dans le markdown
+## Getting Started
+
+Follow these steps to get started with the project:
+
+### Prerequisites
+
+- Node.js
+- Angular CLI
+
+### Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/alessandrov24/ProjetAngularMARTIN_VARTANIAN.git
+   ```
+2. Change to the project directory:
+   ```sh
+   cd ProjetAngularMARTIN_VARTANIAN
+   ```
+3. Install NPM packages:
+   ```sh
+   npm install
+   ```
+
+### Running the Application
+
+Start the application locally:
+```sh
+ng serve
+```
+Visit `http://localhost:4200/`. The application will reload automatically if you change any source files.
+
+## Hosting and Backend
+
+- The frontend of this application is hosted at: [https://projetangular.onrender.com](https://projetangular.onrender.com)
+- The backend API, providing the assignment data, is hosted at: [https://apiprojetangular.onrender.com](https://apiprojetangular.onrender.com)
+- The backend interacts with a MongoDB database to retrieve a dataset of 1000 assignments.
+
+## User Accounts
+
+There are two user roles with different access levels:
+
+- **Admin Account**
+  - Username: `admin`
+  - Password: `adminpass`
+  - Can edit and delete assignments.
+
+- **User Account**
+  - Username: `user1`
+  - Password: `pass1`
+  - Can view assignment details.
+
+## Features
+
+- Secure authentication system.
+- Role-based access control.
+- Capability for viewing, editing, and deleting assignments based on user role.
+- Integrated toolbar and navbar.
+- Backend integration with MongoDB for managing a large dataset of assignments.
