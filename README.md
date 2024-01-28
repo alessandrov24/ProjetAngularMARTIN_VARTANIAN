@@ -44,6 +44,7 @@ Visit `http://localhost:4200/`. The application will reload automatically if you
 
 - The frontend of this application is hosted at: [https://projetangular.onrender.com](https://projetangular.onrender.com)
 - The backend API, providing the assignment data, is hosted at: [https://apiprojetangular.onrender.com](https://apiprojetangular.onrender.com)
+- The repo of the API : [https://github.com/GautierM06/apiProjetAngularMARTIN_VARTANIAN.git](https://github.com/GautierM06/apiProjetAngularMARTIN_VARTANIAN.git)
 - The backend interacts with a MongoDB database to retrieve a dataset of 1000 assignments.
 
 ## User Accounts
